@@ -1,13 +1,13 @@
 package com.myapp.todo.controller;
 
-import java.util.List;
-
-import com.myapp.todo.model.*;
-
+import com.myapp.todo.model.Task;
+import com.myapp.todo.model.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class ToDoController {
@@ -17,15 +17,9 @@ public class ToDoController {
 	
 
 	@RequestMapping(value="/tasks")
-    public ModelAndView listOfTasks() {
-        ModelAndView modelAndView = new ModelAndView("list-of-tasks");
-         
-        List<Task> tasks = taskService.getTasks();
-        modelAndView.addObject("tasks", tasks);
-        for(Task task: tasks){
-        	System.out.println(task.getName());
-        }
-        return modelAndView;
+    @ResponseBody
+    public List<Task> listOfTasks() {
+        return taskService.getTasks();
     }
 	//@RequestMapping(value="/tasks")
 	//@ResponseBody

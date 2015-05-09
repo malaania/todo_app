@@ -13,16 +13,19 @@ public class Task {
 	private String description;
 	private boolean done;
 	private int taskID;
-	
-	
-	
-	//public Task(String name, String desc){
-	//	this.setName(name);
-	//	this.setDescription(desc);
-	//	this.setDone(false);
-	//}
 
-	@Id
+    public Task () {
+
+    }
+
+    public Task(String name, String description, boolean done, int taskID) {
+        this.name = name;
+        this.description = description;
+        this.done = done;
+        this.taskID = taskID;
+    }
+
+    @Id
 	@Column(name = "name", unique = false, nullable = false)
 	public String getName() {
 		return name;
